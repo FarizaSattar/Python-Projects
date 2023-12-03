@@ -1,0 +1,49 @@
+# Birthday Wisher
+
+''' The code reads a CSV file to check if today's date matches any birthdays listed, then sends a personalized
+birthday email from a randomly chosen template to the person whose birthday it is using SMTP, requiring 
+personalization of email details and birthday CSV data. '''
+
+# To run the code you need to update 4 places:
+# 1. Change MY_EMAIL/MY_PASSWORD to your own details.
+# 2. Go to your email provider and make it allow less secure apps.
+# 3. Update the SMTP ADDRESS to match your email provider.
+# 4. Update birthdays.csv to contain today's month and day.
+
+from datetime import datetime
+import pandas
+import random
+import smtplib
+
+MY_EMAIL = "YOUR EMAIL"
+MY_PASSWORD = "YOUR PASSWORD"
+
+today = datetime.now()
+today_tuple = (today.month, today.day)
+
+# Reading data from the birthdays CSV file
+data = pandas.read_csv("birthdays.csv")
+# Creating a dictionary with birthday dates as keys
+birthdays_dict = {(data_row["month"], data_row["day"]): data_row for (index, data_row) in data.iterrows()}
+
+# Checking if today's date matches any birthday in the CSV
+if today_tuple in birthdays_dict:
+    # Fetching the person's details whose birthday is today
+    birthday_person = birthdays_dict[today_tuple]
+    # Choosing a random letter template
+    file_path = f"letter_templates/letter_{random.randint(1,3)}.txt"
+    
+    # Replacing placeholder [NAME] in the letter template with the person's name
+    with open(file_path) as letter_file:
+        contents = letter_file.read()
+        contents = contents.replace("[NAME]", birthday_person["name"])
+
+    # Sending the email using SMTP
+    with smtplib.SMTP("YOUR EMAIL PROVIDER SMTP SERVER ADDRESS") as connection:
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs=birthday_person["email"],
+            msg=f"Subject:Happy Birthday!\n\n{contents}"
+        )

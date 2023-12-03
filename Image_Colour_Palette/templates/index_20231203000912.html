@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Finder</title>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <!-- Form to upload an image -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>  <!-- Input field for selecting an image file -->
+        <button type="submit">Submit</button>  <!-- Button to submit the form -->
+    </form>
+    <!-- Display most common colors if available -->
+    {% if colors %}
+    <h2>Most Common Colors:</h2>
+    <div>
+        {% for color, count in colors %}
+        <div style="background-color:{{ color }}; width:50px; height:50px; display:inline-block;"></div> <!-- Display color box -->
+        <p>{{ color }} - {{ count }} occurrences</p> <!-- Display color name and occurrences -->
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

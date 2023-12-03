@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <!-- Form to add a new task -->
+    <form action="/add" method="post">
+        <!-- Input field to enter task -->
+        <input type="text" name="task" required>
+        <!-- Button to submit the task -->
+        <button type="submit">Add Task</button>
+    </form>
+    <!-- Displaying the list of tasks -->
+    <ul>
+        <!-- Loop through tasks and display each task -->
+        {% for task in tasks %}
+            <!-- List item showing the task and delete link -->
+            <li>{{ task[1] }} <a href="/delete/{{ task[0] }}">❌</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

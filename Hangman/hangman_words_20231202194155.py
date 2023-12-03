@@ -1,0 +1,1 @@
+# A long list of words used for the Hangman game

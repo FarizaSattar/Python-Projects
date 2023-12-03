@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Writing App</title>
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <!-- Text area for user input -->
+    <textarea id="text-area" rows="10" cols="50"></textarea>
+
+    <script>
+        let typingTimer;
+        const typingInterval = 1000; // Time in milliseconds before considering typing has stopped
+
+        // Function to clear text after typing stops
+        function clearText() {
+            const textArea = document.getElementById('text-area');
+            textArea.value = ''; // Clear the text area content
+        }
+
+        // Event listener for keystrokes
+        document.getElementById('text-area').addEventListener('input', function() {
+            clearTimeout(typingTimer); // Clear the previous timer
+            typingTimer = setTimeout(clearText, typingInterval); // Set a new timer for clearing text
+        });
+    </script>
+</body>
+</html>
