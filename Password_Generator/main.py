@@ -1,48 +1,50 @@
 # Password Generator
 
-''' The code generates a password based on user input for the number of letters, symbols, and numbers desired,
-creating a randomized password with different difficulty levels. '''
+''' The code allows the user to generate a random password. '''
 
-# Importing the 'random' module to generate random numbers
 import random
 
-# Lists containing letters, numbers, and symbols
-letters = ['a', 'b', 'c', ..., 'Z']  # List of letters
-numbers = ['0', '1', ..., '9']  # List of numbers
-symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']  # List of symbols
+# These lists contain letters, numbers, and symbols for the randomly generated password
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+           'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 
+           'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+           'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+           'W', 'X', 'Y', 'Z'] 
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+'] 
 
-# Displaying a welcome message for the password generator and prompting user for inputs
-print("Welcome to the PyPassword Generator!")
-nr_letters = int(input("How many letters would you like in your password?\n"))
-nr_symbols = int(input(f"How many symbols would you like?\n"))
-nr_numbers = int(input(f"How many numbers would you like?\n"))
+# Welcome Message
+print("Welcome to the Password Generator!")
 
-# Hard Level: Generating the password by combining characters into a list
+# Asks the user to input the number of letters they want in their password
+number_of_letters = int(input("How many letters would you like in your password?\n"))
+# Asks the user to input the number of symbols they want in their password
+number_of_symbols = int(input("How many symbols would you like in your password?\n"))
+# Asks the user to input the number of numbers they want in their password
+number_of_numbers = int(input("How many numbers would you like in your password?\n"))
+
+# This list will contain the random letters, symbols, and numbers in our randomly generated password
 password_list = []
 
-# Adding random letters to the password list based on user input
-for char in range(1, nr_letters + 1):
+# These for loops will add randomly generated letters, symbols, and numbers to the password list
+for char in range(1, number_of_letters + 1):
     password_list.append(random.choice(letters))
 
-# Adding random symbols to the password list based on user input
-for char in range(1, nr_symbols + 1):
-    password_list += random.choice(symbols)
+for char in range(1, number_of_symbols + 1):
+    password_list.append(random.choice(symbols))
+    
+for char in range(1, number_of_numbers + 1):
+    password_list.append(random.choice(numbers))
 
-# Adding random numbers to the password list based on user input
-for char in range(1, nr_numbers + 1):
-    password_list += random.choice(numbers)
-
-# Displaying the generated password list before shuffling
-print(password_list)
-
-# Shuffling the password list to randomize the order of characters
+# The letters, numbers, and symbols in the list will be randomly rearranged
 random.shuffle(password_list)
-print(password_list)
 
-# Converting the password list into a string
+# This string will contain all of the letters, symbols, and numbers from the password list
 password = ""
+
+# This for loop will add all of the letters, symbols, and numbers from the list to the string
 for char in password_list:
     password += char
-
-# Displaying the final generated password to the user
+    
+# The randomly generated password will be output to the console
 print(f"Your password is: {password}")

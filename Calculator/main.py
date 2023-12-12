@@ -1,62 +1,100 @@
 # Calculator
+''' The code will allow the user to solve basic addition, subtraction, multiplication and division calculations. '''
 
-''' The code defines a simple calculator program that prompts the user for numerical inputs and operations, 
-using functions for addition, subtraction, multiplication, and division, and includes a clear screen function
-using the 'os' module to support a user-friendly interface in a loop until the user decides to exit. '''
+import os
+from art import logo
 
-import os  # Import the 'os' module for console screen clearing
-from art import logo  # Import the logo for display
 
+# This function will clear the console
 def clear_screen():
-    os.system('clear')  # Use 'clear' for UNIX-based systems like VS Code
+    os.system('cls' if os.name == 'nt' else 'clear')  
 
-# Define arithmetic functions
-def add(n1, n2):
-    return n1 + n2
 
-def subtract(n1, n2):
-    return n1 - n2
+# Functions that perform all math operations
+def addition(n1, n2):
+  return n1 + n2
 
-def multiply(n1, n2):
-    return n1 * n2
 
-def divide(n1, n2):
-    return n1 / n2
+def subtraction(n1, n2):
+  return n1 - n2
 
-# Store arithmetic operations in a dictionary
-operations = {
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": divide
+
+def multiplication(n1, n2):
+  return n1 * n2
+
+
+def division(n1, n2):
+  return n1 / n2
+
+
+# Dictionary that will contain the signs for all math operations
+all_math_operations = {
+    "+": addition,
+    "-": subtraction,
+    "*": multiplication,
+    "/": division
 }
 
-# Calculator function
-def calculator():
-    print(logo)  # Display the calculator logo
+# Print logo to console
+print(logo)
 
-    num1 = float(input("What's the first number?: "))  # Prompt user for the first number
-    for symbol in operations:  # Display available operation symbols
-        print(symbol)
-    should_continue = True  # Flag to control continuation of calculations
- 
-    while should_continue:
-        operation_symbol = input("Pick an operation: ")  # Prompt user for operation choice
-        num2 = float(input("What's the next number?: "))  # Prompt user for the second number
-        calculation_function = operations.get(operation_symbol)  # Get the corresponding arithmetic function
-        if calculation_function:
-            answer = calculation_function(num1, num2)  # Perform calculation using chosen operation
-            print(f"{num1} {operation_symbol} {num2} = {answer}")  # Display calculation result
 
-            # Ask user to continue with the answer or start a new calculation
-            if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ") == 'y':
-                num1 = answer  # Use the result as the new starting number
-            else:
-                should_continue = False  # Exit the loop to start a new calculation
-                clear_screen()  # Clear the screen before starting a new calculation
-                calculator()  # Restart the calculator function
-        else:
-            print("Invalid operation symbol!")  # Display an error for an invalid operation symbol
-            should_continue = False  # Exit the loop due to invalid input
+def perform_calculation():
+  # Ask the user to input the first number in the math calculation
+  num1 = float(input("What is the first number?\n"))
 
-calculator()  # Start the calculator
+  # Print all of the math operations that the calculator can perform for the user
+  for sign in all_math_operations:
+    print(sign)
+
+  # Ask the user to input the operation in the math calculator
+  math_operation_key = input("Please pick a math operation?\n")
+
+  # Check to make sure that the user entered a valid math operation
+  while True:
+    if math_operation_key in all_math_operations:
+      break
+    else:
+      print("That is an invalid operation symbol! Please try again!")
+      math_operation_key = input("Please pick a math operation?\n")
+
+  # Ask the user to input the second number in the math calculation
+  num2 = float(input("What is the second number?\n"))
+
+  # Obtain the value associated with the key in the math operation dictionary
+  math_operation_value = all_math_operations.get(math_operation_key)
+
+  # Check to make sure that there is a value inside math_operation_value. If there is, the calculation will be executed
+  if math_operation_value:
+    final_answer = math_operation_value(num1, num2)
+    print(f"{num1} {math_operation_key} {num2} = {final_answer}")
+
+  # Ask the user if they would like to continue using the calculator
+  continue_calculator = input(
+      f"Type 'y' to continue using the calculator, or type 'n' to leave the calculator:\n"
+  )
+
+  # Check to make sure that the user entered a valid value
+  continue_calculator_values = ['y', 'n', 'Y', 'N']
+
+  while True:
+    if continue_calculator in continue_calculator_values:
+      break  # Break the loop if the input is valid
+    else:
+      print("That is an invalid value! Please try again!")
+      continue_calculator = input(
+          f"Type 'y' to continue using the calculator, or type 'n' to leave the calculator:\n"
+      )
+
+  # If the user wants to continue using the calculator
+  if continue_calculator == 'y':
+    clear_screen()
+    perform_calculation()
+
+  # If the user does not want to use the calculator anymore
+  else:
+    clear_screen()
+    print("Goodbye! Thank you for using the calculator!")
+
+# Start the calculator
+perform_calculation()

@@ -1,41 +1,50 @@
 # Blind Auction
+''' Ths code allows the user to hold a blind auction '''
 
-''' The code collects bids from users, determines the highest bidder, and clears the console screen for an 
-interactive bidding system. '''
+from art import logo
 
-# A function to clear the console screen 
+# Clear screen after each bid
 def clear_screen():
-    import os
-    os.system('cls' if os.name == 'nt' else 'clear')  # Uses os.system to clear the console screen based on the operating system
+  import os
+  os.system('cls' if os.name == 'nt' else 'clear')
 
-from art import logo  # Imports the logo from the 'art' module
-print(logo)  # Prints the logo at the beginning of the program
+# Create dictionary to store the bids and bidders
+bids = {}
+bidding_is_finished = False
 
-bids = {}  # Initializes an empty dictionary to store user bids
-bidding_finished = False  # Initializes a flag to control the bidding process
+# This function will calculate the highest bid and its corresponding bidder
+def calculate_highest_bidder(bidding_info):
 
-def find_highest_bidder(bidding_record):
-    # Function to determine the highest bidder and their bid amount
-    highest_bid = 0  # Initializes the highest bid to 0
-    winner = ""  # Initializes the winner's name as an empty string
+# Create variable to record highest bid and string to record the corresponding bidder's name
+  highest_bid = 0
+  winner = ""
 
-    # Iterates through each bidder in the bidding record to find the highest bid and the corresponding bidder
-    for bidder in bidding_record:
-        bid_amount = bidding_record[bidder]
-        if bid_amount > highest_bid:  # Compares the bid amount to the current highest bid
-            highest_bid = bid_amount  # Updates the highest bid if a higher bid is found
-            winner = bidder  # Updates the winner's name corresponding to the highest bid
+# Loop through all bidders and compare them with each other until we get the highest bidder
+  for current_bidder in bidding_info:
+    current_user_bid = bidding_info[current_bidder]
+    if current_user_bid > highest_bid:
+      highest_bid = current_user_bid
+      winner = current_bidder
 
-    print(f"The winner is {winner} with a bid of ${highest_bid}")  # Displays the winner and their bid amount
+# The result of the blind auction
+  print(f"The winner is {winner} with a bid of ${highest_bid}")
 
-while not bidding_finished:
-    name = input("What is your name?: ")  # Asks the user for their name
-    price = int(input("What is your bid?: $"))  # Asks the user for their bid amount
-    bids[name] = price  # Stores the user's bid in the 'bids' dictionary using their name as the key
+# This section of the code allows users to keep on inputting bids 
+while not bidding_is_finished:
+    
+# The user will input their name and bid
+  user_name = input("What is your name?: ")
+  user_price = int(input("What is your bid?: $\n"))
+  bids[user_name] = user_price
+  
+# This section of the code asks the user is there is anyone else who wants to make a bid
+should_bid_continue = input("Is there anyone else who wants to make a bid? Please type 'yes' or 'no'\n")
 
-    should_continue = input("Are there any other bidders? Type 'yes' or 'no'.\n")  # Asks if there are more bidders
-    if should_continue == "no":
-        bidding_finished = True  # Ends the bidding process if there are no more bidders
-        find_highest_bidder(bids)  # Calls the function to determine the highest bidder and display the result
-    elif should_continue == "yes":
-        clear_screen()  # Clears the console screen if there are more bidders to start a new bid entry
+# If there is no one left, the highest bidder will be calculated
+if should_bid_continue == "no":
+    bidding_is_finished == True
+    calculate_highest_bidder(bids)
+    
+# If there is a user who needs to make a bid, the screen will clear
+elif should_bid_continue == "yes":
+    clear_screen()

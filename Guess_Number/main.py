@@ -1,57 +1,96 @@
 # Guess Number
+''' The code will allow the user to play a number guessing game with the computer. '''
 
-''' The code implements a number guessing game where the user guesses a randomly generated number within a 
-specific range, using a defined number of turns based on the selected difficulty level, and provides hints to 
-help the user guess the correct number within the allowed attempts. '''
+import os
+from random import randint
+from art import logo
 
-from random import randint  # Importing randint function from the 'random' module
-from art import logo  # Importing the logo from the 'art' module
+# The number of turns for each difficulty level
+TURNS_FOR_EASY_LEVEL = 10
+TURNS_FOR_HARD_LEVEL = 5
+number_of_turns = 0
 
-EASY_LEVEL_TURNS = 10  # Setting the number of turns for easy level
-HARD_LEVEL_TURNS = 5   # Setting the number of turns for hard level
+# This function will clear the console
+def clear_screen():
+  os.system('cls' if os.name == 'nt' else 'clear')  
 
-# Function to check user's guess against the actual answer.
-def check_answer(guess, answer, turns):
-    """Checks answer against guess. Returns the number of turns remaining."""
-    if guess > answer:  # If the guess is higher than the answer
-        print("Too high.")
-        return turns - 1  # Decrease the number of turns by 1
-    elif guess < answer:  # If the guess is lower than the answer
-        print("Too low.")
-        return turns - 1  # Decrease the number of turns by 1
-    else:  # If the guess is correct
-        print(f"You got it! The answer was {answer}.")
+# This function will determine the number of turns that the user will have
+def set_difficulty_level():
+  difficulty_level = input(
+      "Please choose a difficulty level. Type in 'e' for easy or 'h' for hard\n"
+  ).lower()
 
-# Function to set difficulty level.
-def set_difficulty():
-    level = input("Choose a difficulty. Type 'easy' or 'hard': ")
-    if level == "easy":  # If the user chooses easy difficulty
-        return EASY_LEVEL_TURNS  # Return the number of turns for easy level
-    else:  # If the user chooses hard difficulty
-        return HARD_LEVEL_TURNS  # Return the number of turns for hard level
+  if difficulty_level == "e":
+    return TURNS_FOR_EASY_LEVEL
+  else:
+    return TURNS_FOR_HARD_LEVEL
 
-def game():
-    print(logo)  # Display the game logo
-    print("Welcome to the Number Guessing Game!")
-    print("I'm thinking of a number between 1 and 100.")
-    answer = randint(1, 100)  # Randomly generate the answer between 1 and 100
-    print(f"Pssst, the correct answer is {answer}")  # Display the correct answer (for testing purposes)
+# This function will check the user's guess against the random number, and decrease the number of turns if they get it wrong
+def check_user_guess(user_guess, number_to_guess):
 
-    turns = set_difficulty()  # Set the number of turns based on user-selected difficulty
+  # If user guesses a number that is too high
+  if user_guess > number_to_guess:
+    # Print a blank link to improve readability
+    print()
+    print("The number is too high!")
+    return False
 
-    guess = 0  # Initialize guess to 0
-    while guess != answer:  # Loop until the user's guess matches the answer
-        print(f"You have {turns} attempts remaining to guess the number.")
+  # If the user guesses a number that is too low
+  elif user_guess < number_to_guess:
+    # Print a blank link to improve readability
+    print()
+    print("The number is too low!")
+    return False
 
-        # Let the user guess a number
-        guess = int(input("Make a guess: "))
+  # If the user guesses the correct number
+  else:
+    clear_screen()
+    # Print a blank link to improve readability
+    return True
 
-        # Track the number of turns and reduce by 1 if the guess is incorrect
-        turns = check_answer(guess, answer, turns)
-        if turns == 0:  # If the turns reach 0
-            print("You've run out of guesses, you lose.")
-            return
-        elif guess != answer:  # If the guess is incorrect but attempts are remaining
-            print("Guess again.")
+# This function will run the guessing game
+def play_guessing_game():
 
-game()  # Start the game
+  # Welcome Message
+  print(logo)
+  print('Welcome to the guessing game!')
+  print("I am thinking of a number between 1 and 100.")
+  random_number = randint(1, 100)
+
+  # Initalize the number of turns that the user has and their attempts
+  number_of_turns = set_difficulty_level()
+  user_guess = 0
+
+  # Allow the user to make a guess and end the game if they run out of guesses
+  while user_guess != random_number:
+
+    # Print a blank link to improve readability
+    print()
+
+    # List the user's remaining lives
+    print(f"You have {number_of_turns} attempts!")
+
+    # Allow the user to guess a number
+    user_guess = int(input("Please make a guess:\n"))
+    check_user_guess(user_guess, random_number)
+    number_of_turns -= 1
+
+    if user_guess == random_number:
+      print()
+      print(f"Congrats! You win! The answer was {random_number}")
+
+    # If the user runs out of guesses
+    elif number_of_turns == 0:
+      # Print a blank link to improve readability
+      print()
+      print(
+          f"You lose! You ran out of guesses! The number was {random_number}")
+      return
+
+    # If the user guesses the wrong number but has remaining turns
+    else:
+      # Print a blank link to improve readability
+      print()
+      print("Please guess again!")
+
+play_guessing_game()

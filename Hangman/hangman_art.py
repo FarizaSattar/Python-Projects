@@ -1,4 +1,4 @@
-# List of ASCII art stages representing the Hangman visual at different stages of the game
+# List containing the ASCII art stages for the Hangman game
 stages = ['''
   +---+
   |   |
@@ -56,7 +56,7 @@ stages = ['''
 =========
 ''']
 
-# ASCII art representation of the Hangman game's logo
+# ASCII art of the Hangman game's logo
 logo = ''' 
  _                                             
 | |                                            

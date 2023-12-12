@@ -1,4 +1,4 @@
-# ASCII art representing the game logo
+# ASCII art 
 logo = """
     __  ___       __             
    / / / (_)___ _/ /_  ___  _____
@@ -11,7 +11,6 @@ logo = """
 /_____/\____/|__/|__/\___/_/     
 """
 
-# ASCII art representing 'vs'
 vs = """
  _    __    
 | |  / /____

@@ -1,39 +1,42 @@
 # Coffee Maker
+''' The code creates a coffee maker where the user can order drinks. '''
 
-''' The code initializes a coffee machine system that interacts with a menu to enable users to select drinks, 
-process payments, check resources, and make the chosen drink until turned off. '''
-
-# Import necessary classes from respective modules
+# Import classes from modules
 from menu import Menu
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
-# Initialize instances of MoneyMachine, CoffeeMaker, and Menu
+# Instances
 money_machine = MoneyMachine()
 coffee_maker = CoffeeMaker()
 menu = Menu()
 
-# Set up a loop to keep the program running
-is_on = True
+# Keep program running
+coffee_maker_is_on = True
 
-while is_on:
-    # Get available drink options from the menu
-    options = menu.get_items()
-    # Ask user for their choice
-    choice = input(f"What would you like? ({options}): ")
+# While the coffee maker is on
+while coffee_maker_is_on:
+
+# Get drink options for the user
+  drink_options = menu.get_items()
+  
+  # Ask the user to choose a drink
+  user_choice = input(f"What would you like to drink? ({drink_options}):\n")
+
+# If the user wants to turn off the coffee maker
+  if user_choice == "off":
+    coffee_maker_is_on = False
     
-    # Check the user's input
-    if choice == "off":  # If the user wants to turn off the machine
-        is_on = False
-    elif choice == "report":  # If the user wants a report
-        # Print reports for the CoffeeMaker and MoneyMachine
-        coffee_maker.report()
-        money_machine.report()
-    else:
-        # Find the chosen drink from the menu
-        drink = menu.find_drink(choice)
-        
-        # Check if the coffee maker has enough resources and the user has made payment
-        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
-            # If resources are sufficient and payment is made, make the drink
-            coffee_maker.make_coffee(drink)
+# If the user wants a report on the coffee maker
+  elif user_choice == "report":
+    coffee_maker.report()
+    money_machine.report()
+    
+# Get the drink that the user wants from the menu
+  else:
+    user_drink = menu.find(user_choice)
+
+    # Check if the coffee maker has enough resources and if the user has paid for the drink
+    if coffee_maker.is_resource_sufficient(
+        user_drink) and money_machine.make_payment(user_drink.cost):
+      coffee_maker.make_coffee(user_drink)

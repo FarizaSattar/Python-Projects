@@ -1,4 +1,4 @@
-# The ASCII art logo depicting a simple drawing
+# ASCII art logo 
 logo = '''
                          ___________
                          \         /

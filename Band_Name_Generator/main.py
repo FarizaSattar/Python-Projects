@@ -1,16 +1,13 @@
 # Band Name Generator
+''' The code will generate a band name for the user. '''
 
-''' The code prompts users to input their city of upbringing and pet's name to generate a band name by 
-concatenating these inputs. '''
-
-# Display a welcome message for the Band Name Generator
+# Welcome Message
 print("Welcome to the Band Name Generator!")
 
-# Ask the user to input the name of the city they grew up in and store it in the variable 'street'
-street = input("What's the name of the city you grew up in?\n")
+# Ask the user to input the name of the city where they grew up
+city_name = input("What is the name of the city where you grew up?\n")
 
-# Ask the user to input their pet's name and store it in the variable 'pet'
-pet = input("What's your pet's name?\n")
+# Ask the user to input the name of a pet
+pet_name = input("What is the name of a pet?\n")
 
-# Display a generated band name by combining the city name and the pet's name
-print("Your band name could be " + street + " " + pet + "!")
+print("Your band name could be " + city_name + " " + pet_name + "!")

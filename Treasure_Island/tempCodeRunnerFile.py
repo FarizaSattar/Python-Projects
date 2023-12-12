@@ -36,13 +36,13 @@ choice1 = input('You\'re walking down a path and find yourself at a crossroad. W
 if choice1 == "left":
     
     # The user's second choice
-    choice2 = input('You continue down the path and find yourself at a lake. You need to get to the island in the middle of the lake. Type "wait" to wait for a boat or "swim" to swim across\n').lower()
+    choice2 = input('You continue down the path and find yourself at a lake. You need to get to the island in the middle of the lake. Type "wait" to wait for a boat or "swim" to swim across')
     
     # The user chose to wait
     if choice2 == "wait":
         
         # The user's third choice
-        choice3 = input('You arrive at the island unharmed. You enter a house and find a hallway with 3 doors. They are red, yellow and blue. Which door do you choose?\n').lower()
+        choice3 = input('You arrive at the island unharmed. You enter a house and find a hallway with 3 doors. They are red, yellow and blue. Which door do you choose?')
         
         # The user chose to enter the red room
         if choice3 == "red":
