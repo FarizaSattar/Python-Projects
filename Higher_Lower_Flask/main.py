@@ -1,18 +1,16 @@
 # Higher Lower
 
-''' The code utilizes Flask to create a simple number guessing game where a random number between 0 and 9 is 
-generated, and users can guess the number through a web interface, receiving feedback based on their 
-guesses. '''
+''' The code allows the user to play a simple number guessing game. '''
 
 from flask import Flask
 import random
 
 # Generate a random number between 0 and 9
 random_number = random.randint(0, 9)
-print(random_number)  # Print the generated random number
+print(random_number)  
 
-app = Flask(__name__)  # Create a Flask web application instance
-
+# Create a Flask web application instance
+app = Flask(__name__)  
 
 @app.route('/')
 def home():
@@ -39,4 +37,5 @@ def guess_number(guess):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)  # Run the Flask app in debug mode
+    # Run the Flask app in debug mode
+    app.run(debug=True)  
