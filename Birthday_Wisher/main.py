@@ -5,8 +5,8 @@
 Values to change in code
 1) MY_EMAIL in line 19 to your email address.
 2) MY_PASSWORD in line 20 to your password. 
-3) "[NAME]" in line 42 to the name of the person whose birthday is today.
-4) "YOUR EMAIL PROVIDER SMTP SERVER ADDRESS" in line 44 to your SMTP server address.
+3) "[NAME]" in line 39 to the name of the person whose birthday is today.
+4) "YOUR EMAIL PROVIDER SMTP SERVER ADDRESS" in line 42 to your SMTP server address.
 3) Go to your email provider and make it allow less secure apps.
 5) Update birthdays.csv to contain today's month and day.
 ''' 
