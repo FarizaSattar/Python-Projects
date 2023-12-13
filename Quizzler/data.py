@@ -2,8 +2,10 @@
 
 # Parameters specifying the number and type of trivia questions.
 parameters = {
-    "amount": 10,        # Number of questions to retrieve.
-    "type": "boolean",   # Type of questions, in this case, multiple-choice questions with true/false answers.
+    # Number of questions to retrieve.
+    "amount": 10, 
+    # Type of questions, in this case, multiple-choice questions with true/false answers.
+    "type": "boolean",   
 }
 
 # Send a GET request to the specified API URL with the defined parameters.
@@ -14,4 +16,5 @@ response.raise_for_status()
 
 # Parse the response as JSON data and retrieve the question data from the 'results' field.
 data = response.json()
-question_data = data["results"]  # Extracted question data from the API response.
+# Extracted question data from the API response.
+question_data = data["results"]  
