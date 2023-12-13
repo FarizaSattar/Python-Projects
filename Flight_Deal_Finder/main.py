@@ -1,5 +1,4 @@
 # Flight Deal Finder
-
 ''' The code sends the user SMS alerts for flights with prices lower than the specified lowest price for each 
 destination. '''
 
