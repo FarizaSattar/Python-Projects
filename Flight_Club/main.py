@@ -1,8 +1,6 @@
 # Flight Deal Finder
 
-''' The code retrieves destination data, checks for available flights within a specific date range, compares 
-the flight prices with the lowest prices for each destination, and sends email alerts to customers if a 
-lower-priced flight is found, considering potential stopovers and associated details. '''
+''' The code sends email alerts to users if a lower-priced flight is found. '''
 
 from datetime import datetime, timedelta
 from data_manager import DataManager
