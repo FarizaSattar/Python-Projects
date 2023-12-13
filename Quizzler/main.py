@@ -3,7 +3,6 @@
 ''' The provided imports data for quiz questions, creates a quiz brain based on the provided questions, and 
 initiates a user interface for the quiz. '''
 
-# Import necessary modules and classes
 from question_model import Question
 from data import question_data
 from quiz_brain import QuizBrain
