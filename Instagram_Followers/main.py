@@ -1,9 +1,7 @@
 # Instagram Followers
+''' The code logins in to the user's Instagram account, locates followers of a given account, and automatically 
+follows them. '''
 
-''' The code uses Selenium to log in to Instagram, locate followers of a given account, and automatically 
-follow them, with specific time delays incorporated to handle loading and interaction challenges. '''
-
-# Importing necessary libraries
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException
