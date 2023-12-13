@@ -1,5 +1,4 @@
 # US States
-
 ''' The code allows the user to play a guessing game for U.S. states. '''
 
 import turtle  
