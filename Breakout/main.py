@@ -1,5 +1,4 @@
 # Breakout
-
 ''' The code will allow the user to play a simplifed version of Breakout. '''
 
 import turtle
