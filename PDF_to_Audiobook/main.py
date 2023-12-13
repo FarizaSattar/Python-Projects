@@ -1,7 +1,6 @@
 # PDF to Audiobook
-
-''' The script utilizes PyPDF2 and gTTS libraries to extract text from a PDF file, converting it into speech 
-and playing the generated audio file. '''
+''' The code allows the user to extract text from a PDF file, convert it into speech 
+and play the generated audio file. '''
 
 import PyPDF2
 from gtts import gTTS
@@ -17,7 +16,8 @@ def pdf_to_text(pdf_file):
         # Extract text from each page
         for page_num in range(num_pages):
             page = pdf_reader.getPage(page_num)
-            text += page.extractText()  # Concatenate text from each page
+            # Concatenate text from each page
+            text += page.extractText()  
 
     return text
 
