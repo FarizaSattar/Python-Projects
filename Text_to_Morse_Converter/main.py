@@ -1,8 +1,6 @@
 # Text to Morse Converter
 
-''' The code converts text to Morse code by using a dictionary to map characters to their respective Morse 
-code equivalents, iterating through the input text and replacing each character with its Morse code 
-representation while preserving non-alphanumeric characters, and then displaying the converted Morse code. '''
+''' The code allows the user to convert text to Morse code. '''
 
 # Morse code dictionary mapping characters to their Morse code equivalents
 morse_code_dict = {
