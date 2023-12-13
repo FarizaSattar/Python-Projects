@@ -1,8 +1,6 @@
 # Todo List
 
-''' The code establishes a Flask web application that utilizes SQLite to create a 'tasks' table, allowing 
-users to add, display, and delete tasks via different routes ('/', '/add', '/delete/int:id') and associated 
-functions in response to HTTP requests. '''
+''' The code creates a Todo List for the user. '''
 
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
