@@ -1,5 +1,4 @@
 # Quizzler
-
 ''' The provided imports data for quiz questions, creates a quiz brain based on the provided questions, and 
 initiates a user interface for the quiz. '''
 
