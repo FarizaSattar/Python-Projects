@@ -10,19 +10,33 @@ from notification_manager import NotificationManager
 
 # Initializing instances of DataManager, FlightSearch, and NotificationManager classes
 data_manager = DataManager()
-sheet_data = data_manager.get_destination_data()  # Retrieving destination data from the data manager
-flight_search = FlightSearch()  # Initializing FlightSearch object
-notification_manager = NotificationManager()  # Initializing NotificationManager object
 
-ORIGIN_CITY_IATA = "LON"  # Setting the IATA code for the origin city (London in this case)
+# Retrieving destination data from the data manager
+sheet_data = data_manager.get_destination_data()  
+
+# Initializing FlightSearch object
+flight_search = FlightSearch()  
+
+# Initializing NotificationManager object
+notification_manager = NotificationManager() 
+
+# Setting the IATA code for the origin city (London in this case)
+ORIGIN_CITY_IATA = "LON"  
 
 # Checking if the IATA code is missing for the first destination in the sheet data
 if sheet_data[0]["iataCode"] == "":
+    
     # If the IATA code is missing, obtain and update IATA codes for all destinations
     for row in sheet_data:
-        row["iataCode"] = flight_search.get_destination_code(row["city"])  # Getting IATA code for each city
-    data_manager.destination_data = sheet_data  # Updating the destination data with IATA codes
-    data_manager.update_destination_codes()  # Updating the destination codes in the data manager
+
+        # Getting IATA code for each city
+        row["iataCode"] = flight_search.get_destination_code(row["city"])  
+
+    # Updating the destination data with IATA codes
+    data_manager.destination_data = sheet_data  
+
+    # Updating the destination codes in the data manager
+    data_manager.update_destination_codes()  
 
 # Calculating dates for tomorrow and six months from today
 tomorrow = datetime.now() + timedelta(days=1)
@@ -30,6 +44,7 @@ six_month_from_today = datetime.now() + timedelta(days=(6 * 30))
 
 # Looping through each destination in the sheet data
 for destination in sheet_data:
+    
     # Checking for flights from the origin city to each destination within the specified date range
     flight = flight_search.check_flights(
         ORIGIN_CITY_IATA,
