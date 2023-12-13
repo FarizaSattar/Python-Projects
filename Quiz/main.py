@@ -1,5 +1,4 @@
 # Quiz
-
 ''' The code creates a quiz for the user. '''
 
 # Import necessary classes
