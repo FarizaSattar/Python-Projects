@@ -2,6 +2,11 @@
 ''' The code sends the user SMS alerts for flights with prices lower than the specified lowest price for each 
 destination. '''
 
+'''
+Values to change in code
+  1) ORIGIN_CITY_IATA in line 28 to the IATA code for your country
+'''
+
 from datetime import datetime, timedelta
 from data_manager import DataManager  
 from flight_search import FlightSearch  
