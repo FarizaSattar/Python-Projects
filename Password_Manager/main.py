@@ -1,8 +1,5 @@
 # Password Manager
-
-''' The code is a password manager application with functionalities to generate, save, and retrieve passwords 
-for different websites, utilizing JSON file storage and a graphical user interface built with Tkinter in 
-Python. '''
+''' The code allows the user to generate, save, and retrieve passwords. '''
 
 from tkinter import *
 from tkinter import messagebox
