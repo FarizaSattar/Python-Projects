@@ -1,15 +1,12 @@
 # Flash Cards
 
-''' The code implements a Flash Cards application using Tkinter, displaying French and English words randomly,
-allowing users to learn vocabulary and mark known words, and saving progress to a CSV file. '''
-
-# Flash Cards
+''' The code allows users to create flash cards that display French and English words randomly, mark known words, 
+and save progress to a CSV file. '''
 
 from tkinter import *
 import pandas
 import random
 
-# Background color constant
 BACKGROUND_COLOR = "#B1DDC6"
 
 # Global variables to store current card and words to learn

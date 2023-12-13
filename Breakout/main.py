@@ -1,35 +1,108 @@
 # Breakout
 
-''' The code utilizes Python's Turtle module to create a basic structure for a Breakout game clone, 
-initializing the game window, paddle, and ball elements with their initial properties, but lacks complete game 
-mechanics such as ball movement, collisions, and scoring. '''
+''' The code will allow the user to play a simplifed version of Breakout. '''
 
 import turtle
 
-# Set up the screen
-wn = turtle.Screen()  # Create the game window
-wn.title("Breakout Clone")  # Set window title
-wn.bgcolor("black")  # Set background color
-wn.setup(width=600, height=600)  # Set window dimensions
-wn.tracer(0)  # Disable automatic screen updates
+# Create screen
+wn = turtle.Screen()
+wn.title("Breakout Clone")
+wn.bgcolor("black")
+wn.setup(width=600, height=600)
+
+# Prevent automatic screen updates for smoother animation
+wn.tracer(0)  
 
 # Paddle
-paddle = turtle.Turtle()  # Create the paddle object
-paddle.speed(0)  # Set paddle animation speed
-paddle.shape("square")  # Set paddle shape
-paddle.color("white")  # Set paddle color
-paddle.shapesize(stretch_wid=1, stretch_len=5)  # Set paddle size
-paddle.penup()  # Lift the pen to prevent drawing
-paddle.goto(0, -250)  # Set initial paddle position
+paddle = turtle.Turtle()
+paddle.speed(0)
+paddle.shape("square")
+paddle.color("white")
+paddle.shapesize(stretch_wid=1, stretch_len=5)
+paddle.penup()
+paddle.goto(0, -250)
 
 # Ball
-ball = turtle.Turtle()  # Create the ball object
-ball.speed(0)  # Set ball animation speed
-ball.shape("circle")  # Set ball shape
-ball.color("white")  # Set ball color
-ball.penup()  # Lift the pen to prevent drawing
-ball.goto(0, 0)  # Set initial ball position
-# [More ball properties and game logic should be added here]
+ball = turtle.Turtle()
 
-# The code initializes a basic environment for a Breakout game clone using Python's Turtle module,
-# setting up the game window, paddle, and ball elements, though the ball properties and game logic are incomplete.
+# Adjust ball speed as needed
+ball.speed(1) 
+ball.shape("circle")
+ball.color("white")
+ball.penup()
+ball.goto(0, 0)
+
+# Ball's x-axis movement
+ball.dx = 2  
+
+# Ball's y-axis movement
+ball.dy = -2  
+
+# Functions for paddle movement
+def paddle_move_right():
+    x = paddle.xcor()
+    
+    # Adjust speed as needed
+    x += 20  
+    
+    # Check boundary to prevent paddle from going off-screen
+    if x > 250:  
+        x = 250
+    paddle.setx(x)
+
+def paddle_move_left():
+    x = paddle.xcor()
+    
+    # Adjust speed as needed
+    x -= 20  
+    
+    # Check boundary to prevent paddle from going off-screen
+    if x < -250:  
+        x = -250
+    paddle.setx(x)
+
+# Keyboard bindings for paddle movement
+wn.listen()
+wn.onkeypress(paddle_move_right, "Right")
+wn.onkeypress(paddle_move_left, "Left")
+
+# Main game loop
+while True:
+    
+    # Update the screen
+    wn.update() 
+
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Collision detection with walls
+    # Right wall
+    if ball.xcor() > 290:  
+        ball.setx(290)
+        ball.dx *= -1
+
+    # Left wall
+    if ball.xcor() < -290:  
+        ball.setx(-290)
+        ball.dx *= -1
+
+    # Top wall
+    if ball.ycor() > 290:  
+        ball.sety(290)
+        ball.dy *= -1
+
+    # Bottom wall
+    if ball.ycor() < -290:  
+        ball.goto(0, 0)
+        ball.dy *= -1
+
+    # Collision detection with the paddle
+    if (ball.ycor() < -240) and (paddle.xcor() - 50 < ball.xcor() < paddle.xcor() + 50):
+        ball.sety(-240)
+        ball.dy *= -1
+
+    # Check if the ball is missed
+    if ball.ycor() < -290:
+        ball.goto(0, 0)
+        ball.dy *= -1

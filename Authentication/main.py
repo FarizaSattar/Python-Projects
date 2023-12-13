@@ -1,10 +1,11 @@
 # Authenication
+''' The code creates an authentication system for the user. '''
 
-''' The code establishes an authentication system in a Flask application using SQLAlchemy and Flask-Login, 
-including user registration, login, logout functionalities, secret page access, and file download, ensuring 
-password security by hashing and salting the passwords before storing them in the database. '''
+''' 
+Values to change in code
+    1) secret-key-goes-here in line 17 to create a secret key when managing sessions
+'''
 
-# Import necessary modules and libraries
 from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +13,8 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 
 # Initialize Flask application
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret-key-goes-here'  # Set the secret key for session management
+# Set the secret key for session management
+app.config['SECRET_KEY'] = 'secret-key-goes-here'  
 
 # Connect to the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -39,14 +41,13 @@ class User(UserMixin, db.Model):
 with app.app_context():
     db.create_all()
 
-# Define routes for different functionalities
-
+# Routes
 # Homepage
 @app.route('/')
 def home():
     return render_template("index.html", logged_in=current_user.is_authenticated)
 
-# User registration
+# User Registration
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -67,7 +68,7 @@ def register():
 
     return render_template("register.html", logged_in=current_user.is_authenticated)
 
-# User login
+# User Login
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -84,25 +85,25 @@ def login():
 
     return render_template("login.html", logged_in=current_user.is_authenticated)
 
-# Protected route requiring authentication
+# Protected route that requires authentication
 @app.route('/secrets')
 @login_required
 def secrets():
     return render_template("secrets.html", name=current_user.name, logged_in=True)
 
-# User logout
+# User Logout
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
-# Route to download a file (accessible only when logged in)
+# Route to download a file when the user is logged in
 @app.route('/download')
 @login_required
 def download():
     return send_from_directory('static', path="files/cheat_sheet.pdf")
 
-# Run the Flask app
+# Run Flask application
 if __name__ == "__main__":
     app.run(debug=True)

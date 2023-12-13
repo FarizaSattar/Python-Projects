@@ -1,14 +1,15 @@
 # Birthday Wisher
+''' The code allows the user to send a birthday email to anyone. '''
 
-''' The code reads a CSV file to check if today's date matches any birthdays listed, then sends a personalized
-birthday email from a randomly chosen template to the person whose birthday it is using SMTP, requiring 
-personalization of email details and birthday CSV data. '''
-
-# To run the code you need to update 4 places:
-# 1. Change MY_EMAIL/MY_PASSWORD to your own details.
-# 2. Go to your email provider and make it allow less secure apps.
-# 3. Update the SMTP ADDRESS to match your email provider.
-# 4. Update birthdays.csv to contain today's month and day.
+'''
+Values to change in code
+1) MY_EMAIL in line 19 to your email address.
+2) MY_PASSWORD in line 20 to your password. 
+3) "[NAME]" in line 42 to the name of the person whose birthday is today.
+4) "YOUR EMAIL PROVIDER SMTP SERVER ADDRESS" in line 44 to your SMTP server address.
+3) Go to your email provider and make it allow less secure apps.
+5) Update birthdays.csv to contain today's month and day.
+''' 
 
 from datetime import datetime
 import pandas
@@ -20,20 +21,19 @@ MY_PASSWORD = "YOUR PASSWORD"
 
 today = datetime.now()
 today_tuple = (today.month, today.day)
-
-# Reading data from the birthdays CSV file
 data = pandas.read_csv("birthdays.csv")
-# Creating a dictionary with birthday dates as keys
+
+# Create a dictionary with the birthday dates in the birthday CSV file as keys
 birthdays_dict = {(data_row["month"], data_row["day"]): data_row for (index, data_row) in data.iterrows()}
 
-# Checking if today's date matches any birthday in the CSV
+# Checking if today's date matches any birthday in the CSV file
 if today_tuple in birthdays_dict:
-    # Fetching the person's details whose birthday is today
-    birthday_person = birthdays_dict[today_tuple]
-    # Choosing a random letter template
-    file_path = f"letter_templates/letter_{random.randint(1,3)}.txt"
     
-    # Replacing placeholder [NAME] in the letter template with the person's name
+    # Obtaining details of the person whose birthday is today
+    birthday_person = birthdays_dict[today_tuple]
+    
+    # Choose a random letter template
+    file_path = f"letter_templates/letter_{random.randint(1,3)}.txt"
     with open(file_path) as letter_file:
         contents = letter_file.read()
         contents = contents.replace("[NAME]", birthday_person["name"])
