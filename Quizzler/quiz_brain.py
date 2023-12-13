@@ -3,10 +3,14 @@ import html
 class QuizBrain:
     # Constructor to initialize QuizBrain object with necessary attributes
     def __init__(self, q_list):
-        self.question_number = 0  # Attribute to track current question number
-        self.score = 0  # Attribute to store the user's score
-        self.question_list = q_list  # Attribute to store the list of questions
-        self.current_question = None  # Attribute to store the current question object
+        # Attribute to track current question number
+        self.question_number = 0  
+        # Attribute to store the user's score
+        self.score = 0  
+        # Attribute to store the list of questions
+        self.question_list = q_list  
+        # Attribute to store the current question object
+        self.current_question = None  
 
     # Method to check if there are still questions remaining in the question list
     def still_has_questions(self):
@@ -25,7 +29,10 @@ class QuizBrain:
         correct_answer = self.current_question.answer
         # Check if the user's answer matches the correct answer (case-insensitive)
         if user_answer.lower() == correct_answer.lower():
-            self.score += 1  # Increment the score if the answer is correct
-            return True  # Return True if the answer is correct
+            # Increment the score if the answer is correct
+            self.score += 1  
+            # Return True if the answer is correct
+            return True  
         else:
-            return False  # Return False if the answer is incorrect
+            # Return False if the answer is incorrect
+            return False  
