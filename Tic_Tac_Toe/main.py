@@ -1,8 +1,6 @@
 # Tic Tac Toe
 
-''' The code defines functions to manage a text-based Tic Tac Toe game where players take turns marking their 
-symbol ('X' or 'O') on a 3x3 board, checking for a winner or a tie after each move until the game concludes. 
-'''
+''' The code creates a text-based Tic Tac Toe game. '''
 
 def print_board(board):
     # Function to print the Tic Tac Toe board
