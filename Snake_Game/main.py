@@ -1,10 +1,6 @@
 # Snake Game
 
-''' The code initializes a Snake game by creating a game window and objects for the snake, food, and 
-scoreboard, allowing the snake to move, detecting collisions with food, walls, and its own tail to determine 
-game continuation or ending. '''
-
-# Snake Game
+''' The code allows the user to play the Snake game. '''
 
 from turtle import Screen
 from snake import Snake
