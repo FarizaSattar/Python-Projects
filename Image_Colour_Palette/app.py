@@ -1,5 +1,4 @@
 # Image Colour Palette
-
 ''' The code allows the user to upload an image, and display 
 the top 10 most common colors in it. '''
 
