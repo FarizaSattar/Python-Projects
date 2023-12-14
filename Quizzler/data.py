@@ -3,7 +3,7 @@
 # Parameters specifying the number and type of trivia questions.
 parameters = {
     # Number of questions to retrieve.
-    "amount": 10, 
+    "amount": 50, 
     # Type of questions, in this case, multiple-choice questions with true/false answers.
     "type": "boolean",   
 }
