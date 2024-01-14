@@ -1,5 +1,4 @@
 # Password Generator
-
 ''' The code allows the user to generate a random password. '''
 
 import random

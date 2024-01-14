@@ -9,7 +9,8 @@ class Scoreboard(Turtle):
         self.score = 0
         self.color("white")
         self.penup()
-        self.goto(0, 270)  # Position the scoreboard
+        # Position the scoreboard
+        self.goto(0, 270)  
         self.hideturtle()
         self.update_scoreboard()
 
@@ -25,5 +26,7 @@ class Scoreboard(Turtle):
     def increase_score(self):
         """Increase the score and update the scoreboard."""
         self.score += 1
-        self.clear()  # Clear the previous score
-        self.update_scoreboard()  # Update the scoreboard with the new score
+        # Clear the previous score
+        self.clear() 
+        # Update the scoreboard with the new score
+        self.update_scoreboard()  

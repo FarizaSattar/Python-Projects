@@ -1,5 +1,7 @@
 class Question:
+    # Constructor to initialize a Question object with text and answer attributes
     def __init__(self, q_text, q_answer):
-        # Initialize the Question object with text and answer attributes
-        self.text = q_text  # Store the text of the question
-        self.answer = q_answer  # Store the correct answer to the question
+        # Attribute to store the text of the question
+        self.text = q_text  
+        # Attribute to store the answer of the question
+        self.answer = q_answer  

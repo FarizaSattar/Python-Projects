@@ -1,8 +1,5 @@
 # Password Manager
-
-''' The code is a password manager application with functionalities to generate, save, and retrieve passwords 
-for different websites, utilizing JSON file storage and a graphical user interface built with Tkinter in 
-Python. '''
+''' The code allows the user to generate, save, and retrieve passwords. '''
 
 from tkinter import *
 from tkinter import messagebox
@@ -94,7 +91,7 @@ window.config(padx=50, pady=50)
 
 # Canvas and Logo
 canvas = Canvas(height=200, width=200)
-logo_img = PhotoImage(file="logo.png")
+logo_img = PhotoImage(file="C:/Users/fariz/Downloads/VS_Code/Python/Password_Manager/logo.png")
 canvas.create_image(100, 100, image=logo_img)
 canvas.grid(row=0, column=1)
 

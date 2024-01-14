@@ -1,8 +1,5 @@
 # Web Scraper
-
-''' The code utilizes Python's requests and BeautifulSoup libraries to scrape book information from a 
-specified URL, checking for a successful request and extracting data such as book titles, authors, and prices,
-displaying the collected information if available. '''
+''' The code creates a web scraper for the user. '''
 
 import requests
 from bs4 import BeautifulSoup

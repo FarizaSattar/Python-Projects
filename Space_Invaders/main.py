@@ -1,7 +1,6 @@
 # Space Invaders
 
-''' The code uses Pygame to create a simple game where a player controls a spaceship to avoid collisions with 
-falling aliens, implemented with movement, collision detection, and a game loop for continuous gameplay. '''
+''' The code allows the user to play Space Invaders. '''
 
 import pygame
 import random
@@ -47,19 +46,26 @@ running = True
 while running:
     screen.fill(BLACK)  # Fill the screen with black color
 
-    for event in pygame.event.get():  # Check for events
-        if event.type == pygame.QUIT:  # If the user clicks the close button
-            running = False  # Exit the game loop
+    # Check for events
+    for event in pygame.event.get():  
+        # If the user clicks the close button
+        if event.type == pygame.QUIT:  
+            # Exit the game loop
+            running = False  
 
-    keys = pygame.key.get_pressed()  # Get the state of all keyboard keys
-    if keys[pygame.K_LEFT] and player_x > 0:  # Move the player to the left
+    # Get the state of all keyboard keys
+    keys = pygame.key.get_pressed()  
+    # Move the player to the left
+    if keys[pygame.K_LEFT] and player_x > 0:  
         player_x -= player_speed
-    if keys[pygame.K_RIGHT] and player_x < SCREEN_WIDTH - SPACESHIP_WIDTH:  # Move the player to the right
+    # Move the player to the right
+    if keys[pygame.K_RIGHT] and player_x < SCREEN_WIDTH - SPACESHIP_WIDTH:  
         player_x += player_speed
 
     # Update alien position
     alien_y += alien_speed
-    if alien_y > SCREEN_HEIGHT:  # If the alien reaches the bottom of the screen
+    # If the alien reaches the bottom of the screen
+    if alien_y > SCREEN_HEIGHT:  
         alien_x = random.randint(0, SCREEN_WIDTH - ALIEN_WIDTH)  # Reset its position randomly
         alien_y = -ALIEN_HEIGHT
 
@@ -73,7 +79,11 @@ while running:
     screen.blit(spaceship_img, (player_x, player_y))
     screen.blit(alien_img, (alien_x, alien_y))
 
-    pygame.display.update()  # Update the display
-    clock.tick(60)  # Control the frame rate
+    # Update the display
+    pygame.display.update() 
 
-pygame.quit()  # Quit Pygame
+    # Control the frame rate
+    clock.tick(60)  
+
+# Quit Pygame
+pygame.quit()  

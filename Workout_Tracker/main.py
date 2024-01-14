@@ -1,7 +1,11 @@
 # Workout Tracker
+<<<<<<< HEAD
 
 ''' The provided code interacts with Nutritionix and Sheety APIs, fetches exercise data, calculates calories, and 
 then posts this data into a Google Sheet  '''
+=======
+''' The code interacts fetches the user's exercise data, calculates calories, and posts the data into a Google Sheet. '''
+>>>>>>> ae146dd7f7f684edf8f32c0876f6788a1295da8c
 
 import requests
 from datetime import datetime

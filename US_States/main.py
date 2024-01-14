@@ -1,11 +1,8 @@
 # US States
+''' The code allows the user to play a guessing game for U.S. states. '''
 
-''' The code initiates a U.S. states guessing game using Turtle graphics, where users input state names and if
-correct, the program marks them on a map, prompting the user to identify all 50 states and generating a CSV 
-file of missed states upon choosing to exit the game. '''
-
-import turtle  # Import the turtle module for visualization
-import pandas  # Import the pandas library for data handling
+import turtle  
+import pandas  
 
 # Create a screen and set its title for the U.S. States Game
 screen = turtle.Screen()

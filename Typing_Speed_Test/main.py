@@ -1,11 +1,10 @@
 # Typing Speed Test
 
-''' The code uses Tkinter to create a typing speed test application, presenting a randomized sentence for the 
-user to type and then calculating and displaying the typing speed in words per minute once completed accurately. '''
+''' The code allows the user to perform a test to measure their typing speed. '''
 
-import tkinter as tk  # Importing Tkinter for GUI creation
-import random  # Importing the random module for shuffling
-import time  # Importing the time module for time-related operations
+import tkinter as tk  
+import random  
+import time  
 
 def start_test():
     global start_time

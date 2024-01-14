@@ -4,14 +4,12 @@ email alert. '''
 
 '''
 Values to change in code
-  1) "productTitle" in line 19 to the name of the product
-  2) BUY_PRICE in line 23 to the price that you want to purchase the item
-  5) YOUR_SMTP_ADDRESS in line 32 to your STMP address
+  1) BUY_PRICE in line 23 to the price that you want to purchase the item
+  2) YOUR_SMTP_ADDRESS in line 32 to your STMP address
   6) YOUR_EMAIL in line 36 to your email address
   7) YOUR_PASSWORD in line 37 to your email address password
   8) YOUR_EMAIL in line 41 to your email address
   9) YOUR_EMAIL in line 42 to your email address
-  10) url in line 43 to the url for the product in Amazon
 '''
 
 import smtplib

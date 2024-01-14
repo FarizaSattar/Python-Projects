@@ -1,8 +1,7 @@
 # Habit Tracker
 
-''' The code is an API interaction script using Python's requests library, creating a user on Pixela, setting 
-up a graph to track cycling distance, adding data points to the graph, updating the data, and demonstrating 
-how to delete a data point if needed within the Pixela platform. '''
+''' The code creates a user, sets up a graph to track cycling distance, adds data points to the graph, updates the data, and demonstrates
+how to delete a data point if needed. '''
 
 import requests
 from datetime import datetime

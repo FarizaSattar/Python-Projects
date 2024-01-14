@@ -1,23 +1,28 @@
 # ISS Overhead Notifier
 
-''' The script continuously checks if the International Space Station (ISS) is overhead and if it's nighttime 
-at a specified latitude and longitude, sending an email notification when both conditions are met, requiring 
-email, location, and SMTP server setup. '''
+''' The code ends an email notification when the International Space Station (ISS) is overhead and if it's nighttime 
+at a specified latitude and longitude. '''
 
-# ISS Overhead Notifier
+'''
+Values to change in code
+  1) "___YOUR_EMAIL_HERE____" in line 22 to your email address
+  2) "___YOUR_PASSWORD_HERE___" in line 23 to your password 
+  6) MY_LAT in line 26 to your latitude
+  7) MY_LONG in line 27 to your longitude
+'''
 
-import requests  # Importing the requests library for making HTTP requests
-from datetime import datetime  # Importing datetime for handling date and time
-import smtplib  # Importing smtplib for sending emails
-import time  # Importing time for time-related functions
+import requests 
+from datetime import datetime 
+import smtplib 
+import time 
 
 # Enter your email and password for sending notifications
 MY_EMAIL = "___YOUR_EMAIL_HERE____"
 MY_PASSWORD = "___YOUR_PASSWORD_HERE___"
 
 # Set your latitude and longitude coordinates
-MY_LAT = 51.507351  # Your latitude
-MY_LONG = -0.127758  # Your longitude
+MY_LAT = 51.507351  
+MY_LONG = -0.127758  
 
 
 def is_iss_overhead():
@@ -26,8 +31,12 @@ def is_iss_overhead():
     Makes a request to the ISS location API and compares the coordinates.
     """
     response = requests.get(url="http://api.open-notify.org/iss-now.json")
-    response.raise_for_status()  # Raises an exception for unsuccessful HTTP requests
-    data = response.json()  # Extracts JSON data from the response
+
+    # Raises an exception for unsuccessful HTTP requests
+    response.raise_for_status()  
+
+    # Extracts JSON data from the response
+    data = response.json()  
 
     iss_latitude = float(data["iss_position"]["latitude"])
     iss_longitude = float(data["iss_position"]["longitude"])
@@ -48,8 +57,12 @@ def is_night():
         "formatted": 0,
     }
     response = requests.get("https://api.sunrise-sunset.org/json", params=parameters)
-    response.raise_for_status()  # Raises an exception for unsuccessful HTTP requests
-    data = response.json()  # Extracts JSON data from the response
+    
+    # Raises an exception for unsuccessful HTTP requests
+    response.raise_for_status()  
+
+    # Extracts JSON data from the response
+    data = response.json() 
 
     sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0])
     sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0])
@@ -62,7 +75,8 @@ def is_night():
 
 
 while True:
-    time.sleep(60)  # Pauses the program execution for 60 seconds
+    # Pauses the program execution for 60 seconds
+    time.sleep(60)  
     if is_iss_overhead() and is_night():
         # Connects to the SMTP server, logs in with provided credentials, and sends an email notification
         connection = smtplib.SMTP("__YOUR_SMTP_ADDRESS_HERE___")

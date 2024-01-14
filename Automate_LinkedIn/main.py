@@ -4,9 +4,9 @@ solving CAPTCHA manually, and applying for jobs. '''
 ''' 
 
 Values to change in code
-    1) "YOUR LOGIN EMAIL" in line 19 with your email address used in LinkedIn
-    2) "YOUR LOGIN PASSWORD" in line 20 with your LinkedIn password
-    3) "YOUR PHONE NUMBER" in line 21 with your phone number
+    1) "YOUR LOGIN EMAIL" in line 20 with your email address used in LinkedIn
+    2) "YOUR LOGIN PASSWORD" in line 21 with your LinkedIn password
+    3) "YOUR PHONE NUMBER" in line 22 with your phone number
     4) "YOUR CHROME DRIVER PATH" in line 41 with your Chrome driver path
 '''
 

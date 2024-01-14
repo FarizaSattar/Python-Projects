@@ -1,7 +1,5 @@
 # Rain Alert
-
-''' The code fetches weather data using OpenWeatherMap API for a specific location and sends an SMS 
-notification via Twilio if rain is expected within the next 4 hours. '''
+''' The code sends the user an SMS notification via Twilio if rain is expected within the next 4 hours. '''
 
 import requests
 from twilio.rest import Client
@@ -13,10 +11,13 @@ account_sid = "__YOUR_TWILIO_ACCOUNT_ID__"
 auth_token = "__YOUR_TWILIO_AUTH_TOKEN__"
 
 weather_params = {
-    "lat": 46.947975,  # Latitude
-    "lon": 7.447447,   # Longitude
+    # Latitude
+    "lat": 46.947975,  
+    # Longitude
+    "lon": 7.447447,   
     "appid": api_key,
-    "cnt": 4,  # Fetching weather data for the next 4 hours
+    # Fetching weather data for the next 4 hours
+    "cnt": 4,  
 }
 
 # Fetching weather data from OpenWeatherMap API
@@ -28,7 +29,8 @@ weather_data = response.json()
 will_rain = False
 for hour_data in weather_data["list"]:
     condition_code = hour_data["weather"][0]["id"]
-    if int(condition_code) < 700:  # Codes below 700 indicate rainy conditions
+    # Codes below 700 indicate rainy conditions
+    if int(condition_code) < 700:  
         will_rain = True
 
 # Sending SMS notification via Twilio if rain is expected
@@ -39,4 +41,6 @@ if will_rain:
         from_="YOUR TWILIO VIRTUAL NUMBER",
         to="YOUR TWILIO VERIFIED REAL NUMBER"
     )
-    print(message.status)  # Printing the status of the sent message
+
+    # Printing the status of the sent message
+    print(message.status)  

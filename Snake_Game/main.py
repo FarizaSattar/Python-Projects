@@ -1,10 +1,6 @@
 # Snake Game
 
-''' The code initializes a Snake game by creating a game window and objects for the snake, food, and 
-scoreboard, allowing the snake to move, detecting collisions with food, walls, and its own tail to determine 
-game continuation or ending. '''
-
-# Snake Game
+''' The code allows the user to play the Snake game. '''
 
 from turtle import Screen
 from snake import Snake
@@ -17,7 +13,8 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
-screen.tracer(0)  # Turns off automatic screen updates
+# Turns off automatic screen updates
+screen.tracer(0)  
 
 # Create snake, food, and scoreboard objects
 snake = Snake()
@@ -34,9 +31,12 @@ screen.onkey(snake.right, "Right")
 # Start the game loop
 game_is_on = True
 while game_is_on:
-    screen.update()  # Update the screen
-    time.sleep(0.1)  # Pause to control game speed
-    snake.move()  # Move the snake
+    # Update the screen
+    screen.update()  
+    # Pause to control game speed
+    time.sleep(0.1)  
+    # Move the snake
+    snake.move()  
 
     # Detect collision with food
     if snake.head.distance(food) < 15:

@@ -1,7 +1,8 @@
 class FlightData:
     def __init__(
-        self, price, origin_city, origin_airport, destination_city, destination_airport, out_date, return_date, stop_overs=0, via_city=""):
+
         # Initializing FlightData object with specific attributes
+        self, price, origin_city, origin_airport, destination_city, destination_airport, out_date, return_date, stop_overs=0, via_city=""):
 
         # Price of the flight
         self.price = price

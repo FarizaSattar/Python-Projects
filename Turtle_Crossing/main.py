@@ -1,5 +1,4 @@
 # Turtle Crossing
-
 ''' The code implements a "Turtle Crossing" game where a player navigates through moving cars, accumulating 
 points for successful crossings while ending the game upon collision with a car. '''
 

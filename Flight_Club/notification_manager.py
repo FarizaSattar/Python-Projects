@@ -23,17 +23,25 @@ class NotificationManager:
             from_=TWILIO_VIRTUAL_NUMBER,
             to=TWILIO_VERIFIED_NUMBER,
         )
-        print(message.sid)  # Printing the message SID if successfully sent
+
+        # Printing the message SID if successfully sent
+        print(message.sid)  
 
     def send_emails(self, emails, message):
+        
         # Sending emails using SMTP protocol
         with smtplib.SMTP(MAIL_PROVIDER_SMTP_ADDRESS) as connection:
-            connection.starttls()  # Starting a secure TLS connection
-            connection.login(MY_EMAIL, MY_PASSWORD)  # Logging in to the email server
+
+            # Starting a secure TLS connection
+            connection.starttls()  
+
+            # Logging in to the email server
+            connection.login(MY_EMAIL, MY_PASSWORD)  
             for email in emails:
                 connection.sendmail(
                     from_addr=MY_EMAIL,
                     to_addrs=email,
+                    
                     # Composing email with subject and message content
                     msg=f"Subject: New Low Price Flight!\n\n{message}".encode('utf-8')
                 )
